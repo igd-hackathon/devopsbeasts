@@ -44,7 +44,7 @@ $ terrascan scan
 | scan summary has no violations or errors | 0 |
 | scan command errors out due to invalid inputs | 1 |
 
-### Step 3: Integrate with CI\CD
+### Integrate with CI\CD
 
 Terrascan can be integrated into CI/CD pipelines to enforce security best practices in Github Actions, Bamboo, Codefresh and more CI Tools
 
@@ -115,9 +115,44 @@ Use "terrascan [command] --help" for more information about a command.
 
 ## Policies
 Terrascan policies are written using the [Rego policy language](https://www.openpolicyagent.org/docs/latest/policy-language/). Every rego includes a JSON "rule" file which defines metadata for the policy.
-By default, Terrascan downloads policies from Terrascan repositories while scanning for the first time. However, if you want to download the latest policies, you need to run the Initialization process. See [Usage](https://runterrascan.io/docs/usage/command_line_mode/) for information about the Initialization process.
 
-Note: The scan command will implicitly run the initialization process if there are no policies found.
+https://github.com/igd-hackathon/policyascode/blob/main/policies/opa/docker/DTRQ_CHECK.json
+
+Polices files are two types JSON and Rego
+
+## Rego (https://github.com/igd-hackathon/policyascode/blob/main/policies/opa/docker/Baseimage.rego)
+```
+package accurics
+
+{{.prefix}}{{.name}}{{.suffix}}[dockerFrom.id]{
+	dockerFrom := input.docker_from[_]
+    config := dockerFrom.config
+    not contains(config, "dtrq")
+}
+
+```
+
+
+## Json (https://github.com/igd-hackathon/policyascode/blob/main/policies/opa/docker/DTRQ_CHECK.json)
+```
+{
+    "name": "Baseimage",
+    "file": "Baseimage.rego",
+    "policy_type": "docker",
+    "resource_type": "docker_from",
+    "template_args": {
+        "prefix": "",
+        "suffix": "",
+        "name": "Baseimage"
+    },
+    "severity": "HIGH",
+    "description": "Ensure Base Image Name Contains DTRQ",
+    "reference_id": "DTRQ_CHECK",
+    "category": "Infrastructure Security",
+    "id": "DTRQ_CHECK",
+    "version": 1
+}
+```
 
 
 ## DevOps Beast Authors
