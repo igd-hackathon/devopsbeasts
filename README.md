@@ -155,9 +155,9 @@ package accurics
 ```
 
 
-#### DevOps Beast Authors
+## DevOps Beast Authors
 
-Rajasekar Jayaprakash
-Ravishankar Rangaraj
-Madhu A G
-Harikrishna
+- Rajasekar Jayaprakash
+- Ravishankar Rangaraj
+- Madhu A G
+- Harikrishna
