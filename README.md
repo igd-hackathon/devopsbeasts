@@ -1,5 +1,18 @@
 #### Implementing Policy as Code to Prevent Infrastructure Vulnerabilities
 
+#### Problem
+
+* IT Industry facing compliance issue and vulnerabilities in Infrastructure
+* Industries are investing huge amount to improve security compliance but still they need to implement the process through automation.
+* Large Organizations having more than 100 cloud subscriptions find it difficult to security standards.
+* Many Industries are already started DevSecOps implementation on Application level(SAST, DAST, RASP) but not focusing on the Infrastructure/Cloud platform.
+* In Small Industry Infrastucture are developed by either Developer or DevOps member without any standardize way of implementing with security and compliance.
+* After finding the vulnerabilities /compliance they are re-building Infrastructure which may result in business impact. 
+
+
+
+
+#### Solution
 
 * Implementing  DevSecOps for Infrastructure Security by Policy as Code
 * Building secure Infrastructure in proactive manner by automation way its more efficiency and fast
@@ -9,7 +22,7 @@
 * Using Open Policy Agent, we can achieve 500+  individual policies by using Rego language for  AWS, Azure, GCP, Kubernetes and Docker
 
 
-For Hackthton Demo Purpsose we implemented Terrascan 
+For Hackthton Demo Purpsose we implemented Terrascan for DevSecops as written by Rego.
 
 #### Install as a native executable
 
