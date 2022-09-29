@@ -10,6 +10,8 @@
 * Using Open Policy Agent, we can achieve 500+  individual policies by using Rego language for  AWS, Azure, GCP, Kubernetes and Docker
 
 
+For Hackthton Demo Purpsose we implemented Terrascan 
+
 #### Install as a native executable
 
 ```sh
@@ -85,7 +87,6 @@ jobs:
 
 ```
 
-
 ## Terrascan Commands
 You can use the `terrascan` command with the following options:
 
@@ -116,8 +117,6 @@ Use "terrascan [command] --help" for more information about a command.
 ## Policies
 Terrascan policies are written using the [Rego policy language](https://www.openpolicyagent.org/docs/latest/policy-language/). Every rego includes a JSON "rule" file which defines metadata for the policy.
 
-https://github.com/igd-hackathon/policyascode/blob/main/policies/opa/docker/DTRQ_CHECK.json
-
 Polices files are two types JSON and Rego
 
 ## Rego (https://github.com/igd-hackathon/policyascode/blob/main/policies/opa/docker/Baseimage.rego)
@@ -131,7 +130,6 @@ package accurics
 }
 
 ```
-
 
 ## Json (https://github.com/igd-hackathon/policyascode/blob/main/policies/opa/docker/DTRQ_CHECK.json)
 ```
@@ -154,6 +152,7 @@ package accurics
 }
 ```
 
+## Rego Online Editor (https://play.openpolicyagent.org/)
 
 ## DevOps Beast Authors
 
