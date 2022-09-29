@@ -1,5 +1,5 @@
 
-                            ####Implementing Policy as Code to Prevent Infrastructure Vulnerabilities
+                             **Implementing Policy as Code to Prevent Infrastructure Vulnerabilities**
 
 
 * Implementing  DevSecOps for Infrastructure Security by Policy as Code
