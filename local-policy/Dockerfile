@@ -1,4 +1,4 @@
-FROM dtrq:8-jdk-alpine
+FROM dtrprod:8-jdk-alpine
 ARG JAR_FILE=target/*.jar
 EXPOSE 8080
 COPY ${JAR_FILE} app.jar
