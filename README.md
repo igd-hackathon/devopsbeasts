@@ -1,2 +1,1 @@
-# devopsbeasts
-Repo for DevOps Beasts
+# DevOpsBeast
