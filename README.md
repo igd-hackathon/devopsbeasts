@@ -10,17 +10,6 @@
 * Using Open Policy Agent, we can achieve 500+  individual policies by using Rego language for  AWS, Azure, GCP, Kubernetes and Docker
 
 
-
-## Quick Start
-
-1. [Install](#install)
-2. [Scan](#scan)
-3. [Integrate](#integrate)
-
-### Step 1: Install
-Terrascan supports multiple ways to install and is also available as a Docker image.
-See Terrascan's [releases](https://github.com/tenable/terrascan/releases) page for the latest version of builds in all supported platforms. Select the correct binary for your platform.
-
 #### Install as a native executable
 
 ```sh
@@ -28,14 +17,6 @@ $ curl -L "$(curl -s https://api.github.com/repos/tenable/terrascan/releases/lat
 $ tar -xf terrascan.tar.gz terrascan && rm terrascan.tar.gz
 $ install terrascan /usr/local/bin && rm terrascan
 $ terrascan
-```
-
-#### Install on ArchLinux / Manjaro via `AUR`
-
-ArchLinux and Manjaro users can install by:
-
-```
-yay -S terrascan
 ```
 
 #### Install via `brew`
@@ -46,16 +27,7 @@ yay -S terrascan
 $ brew install terrascan
 ```
 
-#### Docker image
-
-Terrascan is also available as a Docker image and can be used as follows
-
-```sh
-$ docker run tenable/terrascan
-```
-Refer to [documentation](https://runterrascan.io/docs/getting-started/) for information.
-
-### Step 2: Scan
+### Scan
 To scan your code for security issues you can run the following (defaults to scanning Terraform).
 
 ```sh
@@ -71,6 +43,7 @@ $ terrascan scan
 | scan summary has violations but no errors | 3 |
 | scan summary has no violations or errors | 0 |
 | scan command errors out due to invalid inputs | 1 |
+
 ### Step 3: Integrate with CI\CD
 
 Terrascan can be integrated into CI/CD pipelines to enforce security best practices in Github Actions, Bamboo, Codefresh and more CI Tools
