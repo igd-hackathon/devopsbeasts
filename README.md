@@ -1,17 +1,15 @@
 
                               ****Implementing Policy as Code to Prevent Infrastructure Vulnerabilities****
 
-## Introduction
 
-DevSecOps boomed in recent days by implementing various tools in CI/CD process for SAST/DAST and RASP. Most of the organization focuses on DevSecOps tool to identify vulnerabilities and run time attack on applications, still organizations are facing security attacks over cloud as well. Most of the Big organizations hire security advisors and skilled professionals for implementing security and compliance. In case of smaller organizations they fail to implement those high standard security compliance policies. Nowadays all the security can be made as policy as code. With emerging technologies Infrastructure Operations can be performed by DevOps itself, during that time policy as code can help build high security infrastructure. Though organizations use Infrastructure as Code for implementing security standards for their cloud subscriptions, Introducing Policy as Code concept in Infrastructure as Code, as a standard checklist will perform the security measures based on the policies that we configured and it will be applied uniformly for all the subscriptions that the organization opted for. We have open source and enterprise tools growing faster which implements Policy as Code standard and is very effective in identifying the security issues and vulnerabilities in Infrastructure as Code. By configuring and implementing the above Policy as Code tools via CI/CD, Git hooks in a centralized manner will help prevent the security issues and make the organizations infrastructure free from vulnerabilities and security attacks.
+* Implementing  DevSecOps for Infrastructure Security by Policy as Code
+* Building secure Infrastructure in proactive manner by automation way its more efficiency and fast
+* Policy as Code is reusable framework and can be implemented as centralized manner throughout organization in git (https://github.com/igd-hackathon/policyascode)
+* Policy as Code can be written by Python, Yaml and Rego languages
+* We can easily customize polices for each environment as per organization requirements
+* Using Open Policy Agent, we can achieve 500+  individual policies by using Rego language for  AWS, Azure, GCP, Kubernetes and Docker
 
 
-
-## Key features
-* Keep policies in Centrailised repo (https://github.com/igd-hackathon/policyascode)
-* 500+ Policies for security best practices.
-* Scanning of Terraform, AWS CloudFormation Templates (CFT), Azure Resource Manager (ARM),Kubernetes (Helm).
-* Integrates with docker image vulnerability scanning for AWS, Azure, GCP, Harbor container registries.
 
 ## Quick Start
 
@@ -75,8 +73,45 @@ $ terrascan scan
 | scan command errors out due to invalid inputs | 1 |
 ### Step 3: Integrate with CI\CD
 
-Terrascan can be integrated into CI/CD pipelines to enforce security best practices.
-Please refer to our [documentation to integrate with your pipeline](https://runterrascan.io/docs/integrations/).
+Terrascan can be integrated into CI/CD pipelines to enforce security best practices in Github Actions, Bamboo, Codefresh and more CI Tools
+
+**## Intergated Terrascan with Github Actions using Centailised Repo**
+
+```
+on: [push]
+
+jobs:
+
+  terrascan-docker:
+    runs-on: ubuntu-latest
+    name: terrascan-action-docker
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Check out my policy repo
+      uses: actions/checkout@main
+      with:
+        repository: igd-hackathon/policyascode
+        path: ./policyascode
+    - name: Scan docker custom
+      id: terrascan-k8s
+      uses: tenable/terrascan-action@main
+      with:
+        iac_type: 'docker'
+        iac_version: 'v1'
+        policy_type: 'docker'
+        only_warn: true
+        sarif_upload: true
+        iac_dir: 'local-policy/'
+        policy_path: 'policyascode/'
+        
+    - name: Upload SARIF file
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: terrascan.sarif
+
+```
+
 
 ## Terrascan Commands
 You can use the `terrascan` command with the following options:
@@ -111,47 +146,10 @@ By default, Terrascan downloads policies from Terrascan repositories while scann
 
 Note: The scan command will implicitly run the initialization process if there are no policies found.
 
-## Docker Image Vulnerabilities
-You can use the `--find-vuln` flag to collect vulnerabilities as reported in its registry as part of Terrascan's output. Currently Terrascan supports Elastic Container Registry (ECR), Azure Container Registry, Google Container Registry, and Google Artifact Registry.
 
-The `--find-vuln` flag can be used when scanning IaC files as follows:
+## DevOps Beast Authors
 
-```
-$ terrascan scan -i <IaC provider> --find-vuln
-```
-```
-**## Intergated Terrascan with Github Actions using Centailised Repo**
-
-on: [push]
-
-jobs:
-
-  terrascan-docker:
-    runs-on: ubuntu-latest
-    name: terrascan-action-docker
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Check out my policy repo
-      uses: actions/checkout@main
-      with:
-        repository: igd-hackathon/policyascode
-        path: ./policyascode
-    - name: Scan docker custom
-      id: terrascan-k8s
-      uses: tenable/terrascan-action@main
-      with:
-        iac_type: 'docker'
-        iac_version: 'v1'
-        policy_type: 'docker'
-        only_warn: true
-        sarif_upload: true
-        iac_dir: 'local-policy/'
-        policy_path: 'policyascode/'
-        
-    - name: Upload SARIF file
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: terrascan.sarif
-
-
+Rajasekar Jayaprakash
+Ravishankar Rangaraj
+Madhu A G
+Harikrishna
